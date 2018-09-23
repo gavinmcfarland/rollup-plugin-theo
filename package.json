@@ -1,0 +1,36 @@
+{
+  "name": "rollup-plugin-theo",
+  "version": "1.0.0",
+  "author": "Gavin McFarland",
+  "description": "A rollup plugin to transform design tokens using Theo",
+  "main": "dist/rollup-plugin-theo.js",
+  "jsnext:main": "dist/rollup-plugin-theo.mjs",
+  "repository": "mindthetic/rollup-plugin-theo",
+  "scripts": {
+    "build": "rollup -c",
+    "pretest": "npm run build",
+    "test": "mocha test/*.js --require @babel/register",
+    "prepublish": "npm test"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "rollup-plugin"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mindthetic/rollup-plugin-theo/issues"
+  },
+  "homepage": "https://github.com/mindthetic/rollup-plugin-theo#readme",
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/register": "^7.0.0",
+    "coffeescript": "^2.3.2",
+    "mocha": "^5.2.0",
+    "rollup": "^0.66.2",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-buble": "^0.19.2",
+    "theo": "^8.0.0-beta.2"
+  }
+}

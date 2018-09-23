@@ -1,0 +1,25 @@
+props:
+  UNIT_1:
+    value: 4px
+  UNIT_2:
+    value: 8px
+  UNIT_3:
+    value: 16px
+  UNIT_4:
+    value: 24px
+  UNIT_5:
+    value: 32px
+  UNIT_6:
+    value: 40px
+  UNIT_7:
+    value: 48px
+  UNIT_8:
+    value: 128px
+  UNIT_9:
+    value: 128px
+  UNIT_10:
+    value: 128px
+
+global:
+  category: spacing
+  type: size
