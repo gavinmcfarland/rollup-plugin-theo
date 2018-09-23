@@ -14,14 +14,14 @@ npm install --save-dev rollup-plugin-theo
 import theo from 'rollup-plugin-theo';
 
 export default {
-	//...
-	plugins: [
-		theo({
-			input: "./path/to/tokens.yml",
-			output: "./path/to/tokens.css",
-			format: "custom-properties.css"
-		})
-	]
+  //...
+  plugins: [
+    theo({
+      input: "./path/to/tokens.yml",
+      output: "./path/to/tokens.css",
+      format: "custom-properties.css"
+    })
+  ]
 };
 ```
 
