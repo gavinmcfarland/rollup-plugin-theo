@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-theo",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Gavin McFarland",
   "description": "A rollup plugin to transform design tokens using Theo",
   "main": "dist/rollup-plugin-theo.js",
