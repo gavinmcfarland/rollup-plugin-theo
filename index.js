@@ -46,7 +46,10 @@ export default function theo(opts = {}) {
 	return {
 		name: "theo",
 		ongenerate() {
-			convertTokens(opts.input, opts.output, opts.format);
+			convertTokens(opts.input + "/index.yml", opts.output, opts.format);
+			fs.watch(opts.input, {recursive:true}, () => {
+				convertTokens(opts.input + "/index.yml", opts.output, opts.format);
+			});
 		}
 	};
 }
