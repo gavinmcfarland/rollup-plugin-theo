@@ -14,5 +14,6 @@ export default {
 			format: 'es',
 			dest: pkg['jsnext:main']
 		}
-	]
+	],
+	external: [ 'fs', 'theo' ]
 };
