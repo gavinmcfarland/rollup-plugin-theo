@@ -11,7 +11,7 @@ function makeBundle(options, theoOptions) {
 
 describe('rollup-plugin-theo', () => {
 	it('should output tokens.css', () => {
-		return makeBundle({ input: 'basic/basic.js' }, { input: 'basic/tokens.yml', output: 'basic/tokens.css', format: 'custom-properties.css' }).then(bundle => {
+		return makeBundle({ input: 'basic/basic.js' }, { input: 'basic', output: 'basic/tokens.css', format: 'custom-properties.css' }).then(bundle => {
 			bundle.generate({ format: 'iife'});
 			assert.ok(bundle);
 		});
