@@ -17,15 +17,15 @@ export default {
   //...
   plugins: [
     theo({
-      input: "./path/to/tokens",
-      output: "./path/to/tokens.css",
-      format: "custom-properties.css"
+      input: "./path/to/tokens/index.yml",
+      output: {
+          file: "./path/to/tokens.css",
+          format: "custom-properties.css"
+      }
     })
   ]
 };
 ```
-
-`input` Takes a directory where the plugin will look for a `index.yml` file
 
 See the [list of formats](https://github.com/salesforce-ux/theo#formats) available.
 

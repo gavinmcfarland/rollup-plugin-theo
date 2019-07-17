@@ -1,8 +1,8 @@
-import fs from "fs";
-import theoModule from "theo";
+import fs from 'fs'
+import theoModule from 'theo'
 
 theoModule.registerFormat(
-	"custom-values.css",
+	'custom-values.css',
 	`{{#each props as |prop|}}
   {{#if prop.comment~}}
   {{{trimLeft (indent (comment (trim prop.comment)))}}}
@@ -12,16 +12,16 @@ theoModule.registerFormat(
 }
 	{{/each}}
 `
-);
+)
 
 const isWatching =
-	process.argv.includes("-w") || process.argv.includes("--watch");
+	process.argv.includes('-w') || process.argv.includes('--watch')
 
 function convertTokens(input, output, format) {
 	theoModule
 		.convert({
 			transform: {
-				type: "web",
+				type: 'web',
 				file: input
 			},
 			format: {
@@ -29,32 +29,33 @@ function convertTokens(input, output, format) {
 			}
 		})
 		.then(filecontent => {
-			// $button-background: rgb(0, 112, 210);
 			fs.writeFile(output, filecontent, err => {
-				if (err) throw err;
-
-				// console.log("The file was succesfully saved!");
-			});
+				if (err) throw err
+			})
 		})
-		.catch(error => console.log(`Something went wrong: ${error}`));
+		.catch(error => console.log(`Something went wrong: ${error}`))
 }
 
 export default function theo(opts = {}) {
-	if (!opts.input || !opts.output || !opts.format) {
-		throw Error("Input, output and format option must be specified");
+	if (!opts.input || !opts.output) {
+		if (!opts.output.file || !opts.output.format) {
+			throw Error('Input, output and format option must be specified')
+		}
 	}
 
-	// const filter = createFilter(opts.include, opts.exclude);
-
 	return {
-		name: "theo",
+		name: 'theo',
 		generateBundle() {
-			convertTokens(opts.input + "/index.yml", opts.output, opts.format);
+			convertTokens(opts.input, opts.output.file, opts.output.format)
 			if (isWatching) {
 				fs.watch(opts.input, { recursive: true }, () => {
-					convertTokens(opts.input + "/index.yml", opts.output, opts.format);
-				});
+					convertTokens(
+						opts.input,
+						opts.output.file,
+						opts.output.format
+					)
+				})
 			}
 		}
-	};
+	}
 }
