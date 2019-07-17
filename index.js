@@ -2,8 +2,8 @@ import fs from "fs";
 import theoModule from "theo";
 
 theoModule.registerFormat(
-  'custom-values.css',
-  `{{#each props as |prop|}}
+	"custom-values.css",
+	`{{#each props as |prop|}}
   {{#if prop.comment~}}
   {{{trimLeft (indent (comment (trim prop.comment)))}}}
   {{/if~}}
@@ -13,6 +13,9 @@ theoModule.registerFormat(
 	{{/each}}
 `
 );
+
+const isWatching =
+	process.argv.includes("-w") || process.argv.includes("--watch");
 
 function convertTokens(input, output, format) {
 	theoModule
@@ -38,7 +41,7 @@ function convertTokens(input, output, format) {
 
 export default function theo(opts = {}) {
 	if (!opts.input || !opts.output || !opts.format) {
-	  throw Error("Input, output and format option must be specified");
+		throw Error("Input, output and format option must be specified");
 	}
 
 	// const filter = createFilter(opts.include, opts.exclude);
@@ -47,9 +50,11 @@ export default function theo(opts = {}) {
 		name: "theo",
 		generateBundle() {
 			convertTokens(opts.input + "/index.yml", opts.output, opts.format);
-			fs.watch(opts.input, {recursive:true}, () => {
-				convertTokens(opts.input + "/index.yml", opts.output, opts.format);
-			});
+			if (isWatching) {
+				fs.watch(opts.input, { recursive: true }, () => {
+					convertTokens(opts.input + "/index.yml", opts.output, opts.format);
+				});
+			}
 		}
 	};
 }
